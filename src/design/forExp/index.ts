@@ -1,32 +1,52 @@
 import { sleep } from "./sleep"
 const work1 = async()=>{
-    await sleep(1000);
-    console.log("From work 1")
+    let localError=null
+    let value = 1
+    try {
+        await sleep(1000);
+        console.log("From work 1")
+    } catch (error) {
+        localError=error
+    }finally{
+        return{value,localError}
+    }
 }
 const work2 = async()=>{
-    await sleep(1000);
-    console.log("From work 2")
+    let localError=null
+    let value = 2
+    try {
+        await sleep(1000);
+        console.log("From work 2")
+        throw new Error("Simulation")
+    } catch (error) {
+        localError=error
+    }finally{
+        return{value,localError}
+    }
 }
 
 const work3 = async()=>{
-    await sleep(1000);
-    console.log("From work 3")
+    let localError=null
+    let value = 3
+    try {
+        await sleep(1000);
+        console.log("From work 3")
+    } catch (error) {
+        localError=error
+    }finally{
+        return{value,localError}
+    }
 }
 
 const works = [work1,work2,work3];
-// This does not work
-// works.forEach(async (el)=>{
-//     await el();
-// })
-
-// This does not work
-// works.map(async (el)=>{
-//     await el();
-// })
 (async ()=>{
+    const errors =[]
     for(const work of works){
-        await work()
+        const {localError}= await work()
+        if(localError){
+            errors.push(localError)
+        }
     }
+    console.log(errors)
     console.log("After the for loop is executed")
 })();
-
