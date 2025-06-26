@@ -7,9 +7,8 @@ const work1 = async()=>{
         console.log("From work 1")
     } catch (error) {
         localError=error
-    }finally{
-        return{value,localError}
     }
+    return{value,localError}
 }
 const work2 = async()=>{
     let localError=null
@@ -20,9 +19,8 @@ const work2 = async()=>{
         throw new Error("Simulation")
     } catch (error) {
         localError=error
-    }finally{
-        return{value,localError}
     }
+    return{value,localError}
 }
 
 const work3 = async()=>{
@@ -33,20 +31,22 @@ const work3 = async()=>{
         console.log("From work 3")
     } catch (error) {
         localError=error
-    }finally{
-        return{value,localError}
     }
+    return{value,localError}
 }
 
 const works = [work1,work2,work3];
-(async ()=>{
+const test=async ()=>{
     const errors =[]
     for(const work of works){
-        const {localError}= await work()
+        const {localError} = await work()
         if(localError){
             errors.push(localError)
         }
     }
     console.log(errors)
     console.log("After the for loop is executed")
-})();
+}
+(async()=>{
+    await test()
+})()
