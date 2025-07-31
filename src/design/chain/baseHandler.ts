@@ -1,16 +1,16 @@
 interface Hander{
     setNext: (next: Hander) => Hander;
-    handle: <T>(request:T) => Promise<T>;
+    handle: (request:any) => Promise<any>;
 }
 
 export class BaseHandler implements Hander {
     private nextHandler: Hander | null = null;
-    private context<T>:T=null
+    private context:any=null
     setNext(next: Hander): Hander {
         this.nextHandler = next;
         return next;
     }
-    async handle<T>(request: T): Promise<T> {
+    async handle(request: any): Promise<any> {
         this.context = request;
         if (this.nextHandler) {
             this.context= await this.nextHandler.handle(request);
