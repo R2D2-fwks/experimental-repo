@@ -31,6 +31,6 @@ forEach(arr,(item:any)=>{
     let value = item * 2;
 })
 const endTimeForEachLodash = performance.now();
-const elapsedTimeForEachLodash = endTimeForEach - startTimeForEach;
-console.log(`forEachLodash execution time: ${elapsedTimeForEach.toFixed(3)} milliseconds`);
+const elapsedTimeForEachLodash = endTimeForEachLodash - startTimeforEachLodash;
+console.log(`forEachLodash execution time: ${elapsedTimeForEachLodash.toFixed(3)} milliseconds`);
 
