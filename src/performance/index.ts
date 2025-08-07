@@ -34,3 +34,13 @@ const endTimeForEachLodash = performance.now();
 const elapsedTimeForEachLodash = endTimeForEachLodash - startTimeforEachLodash;
 console.log(`forEachLodash execution time: ${elapsedTimeForEachLodash.toFixed(3)} milliseconds`);
 
+const testThrow = ()=>{
+  try {
+    console.log("Hello from Test Throw function")
+    throw new Error("Throw an Error")
+  } catch (error) {
+    console.log("Hello from catch Block")
+    console.log(error)
+  }
+}
+testThrow()
